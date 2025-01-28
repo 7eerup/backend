@@ -92,6 +92,17 @@ async def translate_text(request: TranslationRequest):
         raise HTTPException(status_code=500, detail="Unexpected response from Hugging Face API.")
 
 
+@app.get("/")
+async def root():
+    return {
+        "message": "Hello FastAPI Hugging Face",
+        # "endpoints": [
+        #     "/generate-text",
+        #     "/analyze-sentiment",
+        #     "/translate",
+        # ],
+    }
+
 
 @app.post("/generate")
 async def generate_text(request: TextRequest):
@@ -116,15 +127,6 @@ async def generate_text(request: TextRequest):
     else:
         raise HTTPException(status_code=500, detail="Unexpected response from Hugging Face API.")
 
-@app.get("/")
-async def root():
-    return {
-        "message": "Welcome to the FastAPI Hugging Face integration!",
-        "endpoints": [
-            "/generate-text",
-            "/analyze-sentiment",
-            "/translate",
-        ],
-    }
+
 
 app.include_router(router)
