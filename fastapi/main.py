@@ -46,10 +46,10 @@ def query_huggingface_api(model_name: str, payload: dict):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# Routers for different tasks
+# 유형별 라우터
 router = APIRouter()
 
-@router.post("/generate-text")
+@router.post("/text-to-text")
 async def generate_text(request: TextRequest):
     """
     Generate text using the GPT-2 model.
